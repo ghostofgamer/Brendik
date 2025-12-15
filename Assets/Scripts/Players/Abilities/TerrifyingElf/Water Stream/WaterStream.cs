@@ -10,17 +10,18 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
 {
     public class WaterStream : Skill
     {
-        private List<ITargetable> _targets = new List<ITargetable>();
         [SerializeField] private float castLength = 6f;
         [SerializeField] private float castWidth = 4f;
         [SerializeField] private float castHeight = 1f;
         [SerializeField] private LayerMask targetMask;
         [SerializeField] private Projectile _projectile;
         [SerializeField] private Transform _tileContainer;
+        [SerializeField] private MoveComponent _moveComponent;
 
         protected override int AnimTriggerCastDelay => 0;
         protected override int AnimTriggerCast => 0;
         
+        private List<ITargetable> _targets = new List<ITargetable>();
         private Vector3 _targetPoint = Vector3.positiveInfinity;
         private Coroutine _coroutine;
 
@@ -41,6 +42,8 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
                 {
                     enemies = GetCharactersInBox(castLength, castWidth, castHeight);
                     _targetPoint = GetMousePoint();
+                    
+                    _hero.Move.CanMove = false;
                 }
 
                 yield return null;
@@ -77,6 +80,7 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
             if (_targets.Count > 0)
                 yield return StartCoroutine(StartWaterShot());
 
+            _hero.Move.CanMove = true;
             yield return null;
         }
 

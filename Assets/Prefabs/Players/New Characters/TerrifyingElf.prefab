@@ -19205,6 +19205,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8569747795464636412, guid: 3a165d79672ade54ba8ca1306e0c922d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569747795464636412, guid: 3a165d79672ade54ba8ca1306e0c922d, type: 3}
       propertyPath: _flyChecker
       value: 
       objectReference: {fileID: 650484766491886640}
@@ -21178,7 +21182,6 @@ MonoBehaviour:
   _disactive: 0
   _earlyCooldown: 0
   maxCounter: 100
-  debugBoxPrefab: {fileID: 7993944317757907231, guid: 5e98d8baed6117a4ebab1ce2995550c1, type: 3}
   castLength: 6
   castWidth: 4
   castHeight: 1
