@@ -428,6 +428,7 @@ public abstract class Skill : NetworkBehaviour
 	public Character GetTargetCharacter(bool canGetDead = false)
 	{
         Debug.Log("Try char" + _target);
+        
 		if (_target != null)
 		{
 			if (!_target.IsTargetable && !canGetDead) return null;

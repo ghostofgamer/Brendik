@@ -1,6 +1,7 @@
 using Mirror;
 using System;
 using System.Collections;
+using Telepathy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -112,7 +113,9 @@ public class TestH3 : Skill
     protected void CmdCreateProjecttile(Transform target)
     {
         GameObject item = Instantiate(_projectile.gameObject, transform.position, Quaternion.identity);
-
+        
+        Debug.Log("ProjectTile " + item.name);
+        
         SceneManager.MoveGameObjectToScene(item, _hero.NetworkSettings.MyRoom);
 
         item.GetComponent<Projectile>().StartFly(target, true);

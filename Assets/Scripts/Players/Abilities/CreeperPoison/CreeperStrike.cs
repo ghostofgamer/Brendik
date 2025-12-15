@@ -135,7 +135,7 @@ public class CreeperStrike : Skill
     {
         if (_animTime > 0)
         {
-            float multiplier = _lightningMovement.DurationLeap - 4.9f; // òåñòîâàÿ ñêîðîñòü (èçíà÷àëüíî - 0.1)
+            float multiplier = _lightningMovement.DurationLeap - 4.9f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - 0.1)
             float animTimeMultiplier = _animTime / multiplier;
             _player.Animator.SetFloat("CreeperStrikeMultiplierSpeedAnimation", animTimeMultiplier);
         }
@@ -156,7 +156,7 @@ public class CreeperStrike : Skill
 
     public void DamageDeal(Character target, bool isUsingLightningStrikes = false)
     {
-        var lastÑast = _player.Abilities.LastCastedSkill;
+        var lastCast = _player.Abilities.LastCastedSkill;
         var previewCast = _player.Abilities.PreviewCastedSkill;
 
         if (target != null)
@@ -299,8 +299,8 @@ public class CreeperStrike : Skill
         var lastCast = _player.Abilities.LastCastedSkill;
         var previewCast = _player.Abilities.PreviewCastedSkill;
 
-        if (_lastTargetFirst == target && _lastTargetSecond == target && lastCast is CreeperStrike && previewCast is CreeperStrike) ÑmdTriggerSneakySpitFreeWindow(target);
-        if (_lastTargetFirst == target && lastCast is CreeperStrike) ÑmdBlockPassiveSkillFreeWindow(target);
+        if (_lastTargetFirst == target && _lastTargetSecond == target && lastCast is CreeperStrike && previewCast is CreeperStrike) CmdTriggerSneakySpitFreeWindow(target);
+        if (_lastTargetFirst == target && lastCast is CreeperStrike) CmdBlockPassiveSkillFreeWindow(target);
     }
 
     private IEnumerator TimerForTwoHit(float duration, bool isUsingLightningStrikes)
@@ -418,9 +418,9 @@ public class CreeperStrike : Skill
 
     [Command] private void CmdDamageDeal(Damage damage, GameObject target) => ApplyDamage(damage, target);
 
-    [Command] private void ÑmdTriggerSneakySpitFreeWindow(Character target) => RpcTriggerSneakySpitWindow(target);
+    [Command] private void CmdTriggerSneakySpitFreeWindow(Character target) => RpcTriggerSneakySpitWindow(target);
 
-    [Command] private void ÑmdBlockPassiveSkillFreeWindow(Character target) => RpcBlockPassiveSkillFreeWindow(target);
+    [Command] private void CmdBlockPassiveSkillFreeWindow(Character target) => RpcBlockPassiveSkillFreeWindow(target);
 
     [ClientRpc]
     private void RpcTriggerSneakySpitWindow(Character target)
