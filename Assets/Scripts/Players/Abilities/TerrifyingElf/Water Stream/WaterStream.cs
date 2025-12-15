@@ -17,6 +17,8 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
         [SerializeField] private Projectile _projectile;
         [SerializeField] private Transform _tileContainer;
         [SerializeField] private MoveComponent _moveComponent;
+        
+        [SerializeField] private Mana _mana;
 
         protected override int AnimTriggerCastDelay => 0;
         protected override int AnimTriggerCast => 0;
@@ -72,6 +74,8 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
 
             targetInfo.Points.Add(_targetPoint);
             targetDataSavedCallback(targetInfo);
+            _mana.TryUse(20);
+           
             yield return null;
         }
 
@@ -91,13 +95,7 @@ namespace Players.Abilities.TerrifyingElf.Water_Stream
             float baseDamage = 20f;
             float elapsedTime = 0f;
             float damageMultiplier = 1f;
-            Debug.Log("Water");
-
-            List<GameObject> targetObjects = _targets
-                .OfType<MonoBehaviour>() // оставляем только объекты, которые являются MonoBehaviour
-                .Select(mb => mb.gameObject) // получаем GameObject
-                .ToList();
-            
+            List<GameObject> targetObjects = _targets.OfType<MonoBehaviour>().Select(mb => mb.gameObject).ToList();
             Damage damage = new Damage();
             float damageValue;
             
